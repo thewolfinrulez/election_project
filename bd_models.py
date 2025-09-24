@@ -32,6 +32,7 @@ class Students(Base):
     s_chat_id = Column(String(255), unique=True, nullable=True)
     s_active = Column(Boolean, nullable=False, default=True)
     s_program_id = Column(ForeignKey('t_programs.p_id'), nullable=False, unique=False)
+    s_edu_level = Column(String(255), unique=False, nullable=True)
     s_spec = Column(String(255), unique=False, nullable=False)
     s_direction = Column(String(255), unique=False, nullable=True)
     s_created_at = Column(DateTime(True), nullable=False, server_default=text("now()"))
