@@ -19,7 +19,7 @@ def start_handler(message):
     with SessionLocal() as session:
         student = session.query(Students).filter_by(s_chat_id=str(message.chat.id)).first()
         if student:
-            bot.reply_to(message, f"Привет, {student.s_name}!")
+            bot.reply_to(message, f"Привет, {student.s_code}!")
         else:
             bot.reply_to(
                 message,
@@ -35,7 +35,7 @@ def process_student_id(message):
         if student:
             student.s_chat_id = str(message.chat.id)
             session.commit()
-            bot.reply_to(message, f"ID найден ✅ Привет, {student.s_name}!")
+            bot.reply_to(message, f"ID найден ✅ Привет, {student.s_code}!")
             bot.reply_to(message, f"Введи /vote, чтобы проголосовать")
         else:
             bot.reply_to(message, "❌ Студент с таким ID не найден. Попробуй ещё раз.")

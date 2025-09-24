@@ -12,7 +12,15 @@ class Candidates(Base):
     c_id = Column(Integer, primary_key=True)
     c_active = Column(Boolean, nullable=False, default=True)
     c_name = Column(String(255), unique=False, nullable=False)
+    c_spec_id = Column(ForeignKey('t_specializations.s_id'), nullable=False, unique=False)
     c_created_at = Column(DateTime(True), nullable=False, server_default=text("now()"))
+
+
+class Specializations(Base):
+    __tablename__ = "t_specializations"
+
+    s_id = Column(Integer, primary_key=True)
+    s_spec = Column(String(255), unique=True, nullable=False)
 
 
 class Students(Base):
@@ -20,10 +28,12 @@ class Students(Base):
 
     s_id = Column(Integer, primary_key=True)
     s_code = Column(String(255), unique=True, nullable=False)
-    s_name = Column(String(255), unique=False, nullable=False)
+    # s_name = Column(String(255), unique=False, nullable=False)
     s_chat_id = Column(String(255), unique=True, nullable=True)
     s_active = Column(Boolean, nullable=False, default=True)
-    s_specialization = Column(String(255), unique=False, nullable=True)
+    s_spec_id = Column(ForeignKey('t_specializations.s_id'), nullable=False, unique=False)
+    s_program = Column(String(255), unique=False, nullable=True)
+    s_direction = Column(String(255), unique=False, nullable=True)
     s_created_at = Column(DateTime(True), nullable=False, server_default=text("now()"))
 
 
