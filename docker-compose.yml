@@ -1,0 +1,37 @@
+services:
+
+  postgres_bot:
+    image: postgres
+    restart: always
+    container_name: postgres_bot
+    ports:
+      - 5897:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: postgres
+    volumes:
+      - ./pgdata_conductor:/var/lib/postgresql/data
+    networks:
+      - my-network
+
+  bot_conductor:
+    build:
+      context: ./
+      dockerfile: dockerfile
+    container_name: bot_conductor
+    command: python main.py
+    volumes:
+      - ./:/var/www
+    environment:
+      - POSTGRES_PASSWORD
+      - TELEGRAM_BOT_TOKEN
+    networks:
+      my-network:
+        aliases:
+          - bot-app
+    depends_on:
+      - postgres_bot
+
+networks:
+  my-network:

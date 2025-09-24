@@ -1,0 +1,6 @@
+alembic==1.13.1
+SQLAlchemy==2.0.29
+pytelegrambotapi
+python-decouple==3.8
+psycopg2==2.9.9
+python-dotenv
