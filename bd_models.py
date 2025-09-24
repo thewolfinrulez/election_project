@@ -12,15 +12,15 @@ class Candidates(Base):
     c_id = Column(Integer, primary_key=True)
     c_active = Column(Boolean, nullable=False, default=True)
     c_name = Column(String(255), unique=False, nullable=False)
-    c_spec_id = Column(ForeignKey('t_specializations.s_id'), nullable=False, unique=False)
+    c_program_id = Column(ForeignKey('t_programs.p_id'), nullable=False, unique=False)
     c_created_at = Column(DateTime(True), nullable=False, server_default=text("now()"))
 
 
-class Specializations(Base):
-    __tablename__ = "t_specializations"
+class Programs(Base):
+    __tablename__ = "t_programs"
 
-    s_id = Column(Integer, primary_key=True)
-    s_spec = Column(String(255), unique=True, nullable=False)
+    p_id = Column(Integer, primary_key=True)
+    p_program = Column(String(255), unique=True, nullable=False)
 
 
 class Students(Base):
@@ -31,8 +31,8 @@ class Students(Base):
     # s_name = Column(String(255), unique=False, nullable=False)
     s_chat_id = Column(String(255), unique=True, nullable=True)
     s_active = Column(Boolean, nullable=False, default=True)
-    s_spec_id = Column(ForeignKey('t_specializations.s_id'), nullable=False, unique=False)
-    s_program = Column(String(255), unique=False, nullable=True)
+    s_program_id = Column(ForeignKey('t_programs.p_id'), nullable=False, unique=False)
+    s_spec = Column(String(255), unique=False, nullable=False)
     s_direction = Column(String(255), unique=False, nullable=True)
     s_created_at = Column(DateTime(True), nullable=False, server_default=text("now()"))
 
