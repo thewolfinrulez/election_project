@@ -23,7 +23,7 @@ def start_handler(message):
         else:
             bot.reply_to(
                 message,
-                f"Привет! Введи, пожалуйста свой id, полученный при поступлении(надо инструкцию наверно или пояснение, что куда откуда)."
+                f"Привет! Введи, пожалуйста свой свой st000000, полученный при поступлении."
             )
             bot.register_next_step_handler(message, process_student_id)
 
@@ -35,10 +35,10 @@ def process_student_id(message):
         if student:
             student.s_chat_id = str(message.chat.id)
             session.commit()
-            bot.reply_to(message, f"ID найден ✅ Привет, {student.s_code}!")
+            bot.reply_to(message, f"✅ st найден! Привет, {student.s_code}!")
             bot.reply_to(message, f"Введи /vote, чтобы проголосовать")
         else:
-            bot.reply_to(message, "❌ Студент с таким ID не найден. Попробуй ещё раз.")
+            bot.reply_to(message, "❌ Студент с таким st не найден! Попробуй ещё раз.")
             bot.register_next_step_handler(message, process_student_id)
 
 
