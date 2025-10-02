@@ -59,6 +59,7 @@ def vote_handler(message):
                 for c in candidates:
                     markup.add(InlineKeyboardButton(text=c.c_name, callback_data=f"vote_{c.c_id}"))
                     with open(f"images/{c.c_photo_path}", "rb") as photo:
+                        print(c.c_name)
                         bot.send_photo(
                             message.chat.id,
                             photo,
