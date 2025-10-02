@@ -71,10 +71,10 @@ def vote_handler(message):
                             bot.send_photo(
                                 message.chat.id,
                                 photo,
-                                # caption=f"{c.c_name}\n\n{c.c_message}",
+                                caption=f"{c.c_name}",
                                 parse_mode='HTML'
                             )
-                            bot.send_message(message.chat.id, f"{c.c_name}\n\n{c.c_message}", parse_mode='HTML')
+                            bot.send_message(message.chat.id, f"{c.c_message}", parse_mode='HTML')
                 bot.send_message(message.chat.id, "Выберите кандидата:", reply_markup=markup)
         else:
             bot.reply_to(message, f"Ошибка авторизации, пожалуйста, введите команду /start")
