@@ -60,14 +60,14 @@ def vote_handler(message):
                     markup.add(InlineKeyboardButton(text=c.c_name, callback_data=f"vote_{c.c_id}"))
                     with open(f"images/{c.c_photo_path}", "rb") as photo:
                         bot.send_message(message.chat.id, f"{c.c_name}", parse_mode='HTML')
-                        try:
+                        if len(f"{c.c_name}\n\n{c.c_message}") < 1024:
                             bot.send_photo(
                                 message.chat.id,
                                 photo,
                                 caption=f"{c.c_name}\n\n{c.c_message}",
                                 parse_mode='HTML'
                             )
-                        except:
+                        else:
                             bot.send_photo(
                                 message.chat.id,
                                 photo,
