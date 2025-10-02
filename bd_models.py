@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, DateTime, ForeignKey, String, Integer, text
+from sqlalchemy import Boolean, Column, DateTime, ForeignKey, String, Integer, text, Text
 from sqlalchemy.orm import DeclarativeBase
 
 
@@ -14,6 +14,11 @@ class Candidates(Base):
     c_name = Column(String(255), unique=False, nullable=False)
     c_program_id = Column(ForeignKey('t_programs.p_id'), nullable=False, unique=False)
     c_created_at = Column(DateTime(True), nullable=False, server_default=text("now()"))
+    c_message = Column(Text, unique=False, nullable=False)
+    c_coure_info = Column(String(255), unique=False, nullable=True)
+    c_vk = Column(String(255), unique=False, nullable=True)
+    c_tg = Column(String(255), unique=False, nullable=True)
+    c_photo_path = Column(String(255), unique=False, nullable=True)
 
 
 class Programs(Base):
