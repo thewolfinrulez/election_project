@@ -53,11 +53,12 @@ def vote_handler(message):
                 candidate = session.query(Candidates).filter_by(c_id=student_vote.v_candidate_id).first()
                 bot.reply_to(message, f"Вы уже проголосовали за {candidate.c_name}")
             else:
-                candidates = session.query(Candidates).filter_by(c_active=True).all()
+                candidates = session.query(Candidates).filter_by(c_active=True).filter_by(
+                    c_program_id=student.s_program_id).all()
                 markup = InlineKeyboardMarkup()
                 for c in candidates:
                     markup.add(InlineKeyboardButton(text=c.c_name, callback_data=f"vote_{c.c_id}"))
-
+                    bot.send_message(message.chat.id, f"{c.c_name}\n\n{c.c_message}")
                 bot.send_message(message.chat.id, "Выберите кандидата:", reply_markup=markup)
         else:
             bot.reply_to(message, f"Ошибка авторизации, пожалуйста, введите команду /start")
