@@ -21,6 +21,7 @@ services:
       dockerfile: dockerfile
     container_name: bot_conductor
     command: python main.py
+    restart: always
     volumes:
       - ./:/var/www
     environment:
